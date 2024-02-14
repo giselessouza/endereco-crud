@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.hexa
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: maven
+features: [app-name, data, data-jpa, h2, http-client, jdbc-hikari, junit, kapt, kotlin, kotlin-application, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, netty-server, openapi, properties, readme, serialization-jackson, shade, static-resources, swagger-ui]
