@@ -4,27 +4,31 @@ package com.example.yourproject.adapter
 import com.example.yourproject.core.model.Address
 import com.example.yourproject.core.ports.AddressRepository
 import org.springframework.stereotype.Repository
+import org.springframework.data.jpa.repository.JpaRepository
 
 @Repository
-class AddressRepositoryImpl : AddressRepository {
+interface AddressJpaRepository : JpaRepository<Address, String>
+
+@Repository
+class AddressRepositoryImpl(private val addressJpaRepository: AddressJpaRepository) : AddressRepository {
 
     override fun create(address: Address): Address {
-        // Implement creation logic here
+        return addressJpaRepository.save(address)
     }
 
     override fun findById(id: String): Address? {
-        // Implement find by ID logic here
+        return addressJpaRepository.findById(id).orElse(null)
     }
 
     override fun update(address: Address): Address {
-        // Implement update logic here
+        return addressJpaRepository.save(address)
     }
 
     override fun deleteById(id: String) {
-        // Implement delete logic here
+        addressJpaRepository.deleteById(id)
     }
 
     override fun findAll(): List<Address> {
-        // Implement find all logic here
+        return addressJpaRepository.findAll()
     }
 }

@@ -8,6 +8,17 @@ import org.springframework.stereotype.Service
 class DeleteAddressUseCase(private val addressRepository: AddressRepository) {
 
     fun execute(id: String) {
-        addressRepository.deleteById(id)
+        try {
+            val address = addressRepository.findById(id)
+            if (address != null) {
+                addressRepository.deleteById(id)
+            } else {
+                throw IllegalArgumentException("Address not found")
+            }
+        } catch (e: Exception) {
+            // Handle the exception here
+            // You can log the error or throw a custom exception
+        }
     }
 }
+
